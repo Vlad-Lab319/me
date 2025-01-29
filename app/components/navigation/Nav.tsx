@@ -17,6 +17,24 @@ export const Nav = () => {
         Home
       </Link>
       <Link
+        className={`font-bold uppercase ${pathname === "/mapbox" ? "text-sky-600" : "text-slate-600"} hover:underline hover:text-sky-600`}
+        href="/mapbox"
+        onClick={() =>
+          (document.getElementById("menu-toggle")!.checked = false)
+        }
+      >
+        Mapbox
+      </Link>
+      <Link
+        className={`font-bold uppercase ${pathname === "/court" ? "text-sky-600" : "text-slate-600"} hover:underline hover:text-sky-600`}
+        href="/court"
+        onClick={() =>
+          (document.getElementById("menu-toggle")!.checked = false)
+        }
+      >
+        Threejs
+      </Link>
+      <Link
         className={`font-bold uppercase ${pathname === "/contacts" ? "text-sky-600" : "text-slate-600"} hover:underline hover:text-sky-600`}
         href="/contacts"
         onClick={() =>

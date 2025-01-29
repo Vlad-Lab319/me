@@ -32,7 +32,7 @@ export default function RootLayout({ children }: Props) {
             <Nav />
           </header>
           <Hamburger />
-          <section className="m-0 pb-8 col-start-1 row-start-1 h-full w-full grid grid-cols-1 grid-rows-1 place-items-center peer-checked:-translate-x-1/3 landscape:peer-checked:-translate-x-[20%] z-10 bg-[#111]">
+          <section className="m-0 pb-8 col-start-1 row-start-1 h-dvh w-full grid grid-cols-1 grid-rows-1 place-items-center peer-checked:-translate-x-1/3 landscape:peer-checked:-translate-x-[20%] z-10 bg-[#111]">
             <main className="h-full w-full row-start-1 row-span-1">
               <h1 className="fixed m-2 p-2 text-slate-200 uppercase font-bold text-lg lg:text-2xl">
                 Vladimir Eremenko
