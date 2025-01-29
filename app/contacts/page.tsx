@@ -8,7 +8,7 @@ import { OrbitControls } from "@react-three/drei";
 
 // Dynamically import 3d model
 const Model = dynamic(() => import("../components/models/Model"), {
-  ssr: false,
+  // ssr: false,
 });
 
 const Contacts = () => {
