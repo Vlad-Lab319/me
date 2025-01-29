@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState, useCallback } from "react";
 import mapboxgl from "mapbox-gl";
 import { Threebox } from "threebox-plugin";
 
@@ -100,6 +100,23 @@ const MapboxExample = () => {
         labelLayerId,
       );
     });
+  });
+
+  useEffect(() => {
+    if (!mapRef.current) return;
+    mapRef.current.once("idle", handleIdle);
+
+    function handleIdle() {
+      setTimeout(() => {
+        mapRef.current.easeTo({
+          zoom: 23,
+          pitch: 82.5,
+          bearing: -63.64,
+          center: [-79.6337, 43.84715],
+          duration: 5000,
+        });
+      }, 4000);
+    }
   }, []);
 
   return <div id="map" ref={mapContainerRef} style={{ height: "100%" }}></div>;
