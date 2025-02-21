@@ -96,7 +96,6 @@ function Court(props) {
 function Ball(props) {
   const { scene, nodes, materials } = useGLTF("/Basketball_ball.glb");
 
-  console.log("Ball: ", materials);
   useLayoutEffect(() => {
     scene.traverse((o) => {
       if (o.isMesh) {
