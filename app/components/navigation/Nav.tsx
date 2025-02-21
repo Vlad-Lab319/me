@@ -35,6 +35,15 @@ export const Nav = () => {
         Threejs
       </Link>
       <Link
+        className={`font-bold uppercase ${pathname === "/logo" ? "text-sky-600" : "text-slate-600"} hover:underline hover:text-sky-600`}
+        href="/logo"
+        onClick={() =>
+          (document.getElementById("menu-toggle")!.checked = false)
+        }
+      >
+        Logo
+      </Link>
+      <Link
         className={`font-bold uppercase ${pathname === "/contacts" ? "text-sky-600" : "text-slate-600"} hover:underline hover:text-sky-600`}
         href="/contacts"
         onClick={() =>
