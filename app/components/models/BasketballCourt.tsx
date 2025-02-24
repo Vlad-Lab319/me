@@ -1,6 +1,6 @@
 "use client";
 import * as THREE from "three";
-import React from "react";
+import React, { Suspense } from "react";
 import { useLayoutEffect } from "react";
 import { applyProps, Canvas } from "@react-three/fiber";
 import {
@@ -11,6 +11,13 @@ import {
   OrbitControls,
   BakeShadows,
 } from "@react-three/drei";
+
+import { Html, useProgress } from "@react-three/drei";
+
+function Loader() {
+  const { progress } = useProgress();
+  return <Html center>{progress.toFixed(0)} % loaded</Html>;
+}
 
 const BasketballCourt = () => {
   return (
@@ -24,48 +31,50 @@ const BasketballCourt = () => {
           className="h-full w-full block"
           resize={{ debounce: 200 }}
         >
-          <fog attach="fog" args={["purple", 0, 130]} />
-          <ambientLight intensity={1} />
-          {/* <hemisphereLight color={"0xB1E1FF"} intensity={1} /> */}
-          <group position={[0, -1, 0]}>
-            <spotLight
-              castShadow
-              intensity={10}
-              angle={0.1}
-              position={[-200, 220, -100]}
-              shadow-mapSize={[2048, 2048]}
-              shadow-bias={-0.000001}
+          <Suspense fallback={<Loader />}>
+            <fog attach="fog" args={["purple", 0, 130]} />
+            <ambientLight intensity={1} />
+            {/* <hemisphereLight color={"0xB1E1FF"} intensity={1} /> */}
+            <group position={[0, -1, 0]}>
+              <spotLight
+                castShadow
+                intensity={10}
+                angle={0.1}
+                position={[-200, 220, -100]}
+                shadow-mapSize={[2048, 2048]}
+                shadow-bias={-0.000001}
+              />
+              <spotLight
+                angle={0.1}
+                position={[-250, 120, -200]}
+                intensity={1}
+                castShadow
+                shadow-mapSize={[50, 50]}
+                shadow-bias={-0.000001}
+              />
+              <spotLight
+                angle={0.1}
+                position={[250, 120, 200]}
+                intensity={1}
+                castShadow
+                shadow-mapSize={[50, 50]}
+                shadow-bias={-0.000001}
+              />
+              <Court />
+              <Ball />
+              <Floor />
+            </group>
+            <OrbitControls
+              minPolarAngle={Math.PI / 2}
+              maxPolarAngle={Math.PI / 2}
             />
-            <spotLight
-              angle={0.1}
-              position={[-250, 120, -200]}
-              intensity={1}
-              castShadow
-              shadow-mapSize={[50, 50]}
-              shadow-bias={-0.000001}
-            />
-            <spotLight
-              angle={0.1}
-              position={[250, 120, 200]}
-              intensity={1}
-              castShadow
-              shadow-mapSize={[50, 50]}
-              shadow-bias={-0.000001}
-            />
-            <Court />
-            <Ball />
-            <Floor />
-          </group>
-          <OrbitControls
-            minPolarAngle={Math.PI / 2}
-            maxPolarAngle={Math.PI / 2}
-          />
-          {/* <Environment
+            {/* <Environment
             files="https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/hdris/noon-grass/noon_grass_1k.hdr"
             background
-          /> */}
-          <Environment preset="city" />
-          <BakeShadows />
+            /> */}
+            <Environment preset="city" />
+            <BakeShadows />
+          </Suspense>
         </Canvas>
       </div>
     </section>
